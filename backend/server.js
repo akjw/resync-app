@@ -9,7 +9,7 @@ const path = require("path")
 
 //==== middleware
 // app.use(express.static(path.join(__dirname, "client", "build")))
-require('./config/db'); 
+require('./database/db'); 
 app.use(express.json()); 
 app.use(cors()); 
 

@@ -1,0 +1,27 @@
+<h3>Register</h3>
+<form (ngSubmit)="onSubmit()" class="ui form" [formGroup]="authForm">
+  <app-input inputType="text" label="First Name" [control]="authForm.get('firstName')"></app-input>
+  <app-input inputType="text" label="Last Name" [control]="authForm.get('lastName')"></app-input>
+  <app-input inputType="text" label="Email" [control]="authForm.get('email')"></app-input>
+  <app-input inputType="password" label="Password" [control]="authForm.get('password')"></app-input>
+  <app-input inputType="password"  label="Confirm Password" [control]="authForm.get('passwordConfirmation')"></app-input>
+
+  <div *ngIf="authForm.get('password').touched && authForm.get('passwordConfirmation').touched && authForm.errors" 
+  class="ui red basic label">
+    <p *ngIf="authForm.errors.passwordsDontMatch">
+      Passwords do not match
+    </p>
+    <p *ngIf="authForm.errors.noConnection">
+      No internet connection
+    </p >
+    <p *ngIf="authForm.errors.unknownError">
+      Registration failed. Please try again later.
+    </p >
+  </div>
+
+  <div>
+    <button class="ui submit button primary">
+      Submit
+    </button>
+  </div>
+</form>

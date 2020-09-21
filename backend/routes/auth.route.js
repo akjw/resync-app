@@ -12,9 +12,10 @@ require('dotenv').config()
 */
 
 router.post('/register', async (req, res) => {
-  let {firstname, lastname, email, password, organization } = req.body;
+
+  let {firstName, lastName, email, password } = req.body;
   try {
-    let user = new User({firstname, lastname, email, organization});
+    let user = new User({firstName, lastName, email });
     //bcrypt takes in password and salt
     let hashPassword = await bcrypt.hash(password, 10);
     user.password = hashPassword;
@@ -41,7 +42,7 @@ router.post('/register', async (req, res) => {
   @desc login user
 */
 
-router.post('/login', async (req, res) => {
+router.post('/signin', async (req, res) => {
   let {email, password } = req.body;
   try {
 
@@ -73,6 +74,31 @@ router.post('/login', async (req, res) => {
 
   } catch (error) {
     res.status(500).json({ message: 'token missing' });
+  }
+})
+
+/* 
+  @route POST api/auth/email
+  @desc check for unique email
+*/
+
+router.post('/email', async (req, res) => {
+  try {
+    let user = await User.findOne({email: req.body.email})
+
+    if(!user){
+      res.status(200).json({
+        available: true
+      })
+    } else if(user){
+      res.status(422).json({
+        email: 'Account with email already exists',
+      })
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: 'Internal Error',
+    })
   }
 })
 

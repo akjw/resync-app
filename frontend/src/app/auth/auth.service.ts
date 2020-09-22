@@ -13,6 +13,11 @@ interface RegisterCredentials {
 
 }
 
+interface SigninCredentials {
+  email: string;
+  password: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -58,5 +63,14 @@ export class AuthService {
     localStorage.removeItem("token");
     this.signedin$.next(false);
     return this.signedin$;
+  }
+
+  signin(credentials: SigninCredentials) {
+    return this.http.post<any>(`${environment.API_URL}/auth/signin`, credentials)
+    .pipe(
+      tap(() => {
+        this.signedin$.next(true);
+      })
+    )
   }
 }

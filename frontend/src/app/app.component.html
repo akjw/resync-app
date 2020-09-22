@@ -4,7 +4,7 @@
 
     <div class="right menu">
       <ng-container *ngIf="signedin$ | async">
-        <a class="ui item" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+        <a class="ui item" routerLink="/home" routerLinkActive="active">Home</a>
         <a class="ui item"  (click)="onSignout()">Sign Out</a>
       </ng-container>
       <ng-container *ngIf="!(signedin$ | async)">

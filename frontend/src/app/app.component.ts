@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from './auth/auth.service';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,10 @@ export class AppComponent {
   signedin$: BehaviorSubject<boolean>;
   isAuth = false;
 
-  constructor(private authService: AuthService) {
+  constructor(
+    private authService: AuthService,
+    private router: Router
+    ) {
     this.signedin$ = this.authService.signedin$;
   }
 
@@ -26,6 +30,7 @@ export class AppComponent {
   onSignout() {
     this.authService.signout();
     this.signedin$ = this.authService.signedin$;
+    this.router.navigateByUrl('/')
   }
 
 }

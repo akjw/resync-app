@@ -6,11 +6,11 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { SigninComponent } from './signin/signin.component';
 import { RegisterComponent } from './register/register.component';
 import { SharedModule } from '../shared/shared.module';
-import { SignoutComponent } from './signout/signout.component';
+
 
 
 @NgModule({
-  declarations: [SigninComponent, RegisterComponent, SignoutComponent],
+  declarations: [SigninComponent, RegisterComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,

@@ -3,6 +3,9 @@ const User = require('../models/user.model');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const checkToken = require('../config/config');
+const Organization = require('../models/organization.model');
+const Employee = require('../models/employee.model');
+const Department = require('../models/department.model');
 require('dotenv').config()
 
 
@@ -116,6 +119,22 @@ router.get('/user', checkToken, async (req, res) => {
   } catch (error) {
     res.status(500).json({
       message: 'Cannnot Get User Info',
+    })
+  }
+})
+
+router.get('/stats', async (req, res) => {
+  try {
+    let orgNum = await Organization.countDocuments({});
+    let deptNum = await Department.countDocuments({});
+    let employeeNum = await Employee.countDocuments({});
+    let stats = { orgNum, deptNum, employeeNum }
+    res.status(200).json({
+      stats,
+    })
+  } catch (error) {
+    res.status(500).json({
+      message: 'Cannnot Get Stats',
     })
   }
 })

@@ -54,7 +54,7 @@ router.get("/:id", async (req, res) => {
 
 router.post("/new", checkToken, async (req, res) => {
   try {
-    console.log('here', req.body)
+    
     await Organization.create({name: req.body.name, owner: req.user.id, address: req.body.address, city: req.body.city, state: req.body.state, country: req.body.country})
 
     //increment user's organization count

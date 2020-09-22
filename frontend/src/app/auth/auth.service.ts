@@ -45,16 +45,9 @@ export class AuthService {
   }
 
   checkAuth(){
-    // return this.http.get(`${environment.API_URL}/signedin`)
-    // .pipe(
-    //   tap((response) => {
-    //     console.log(response)
-    //   })
-    // )
     let token = localStorage.getItem('token');
     if(token){
       this.signedin$.next(true);
-      // this.isAuth = true;
     } 
     return this.signedin$;
   }
@@ -72,5 +65,12 @@ export class AuthService {
         this.signedin$.next(true);
       })
     )
+  }
+
+  getStats(){
+    let token = localStorage.getItem('token');
+    return this.http.get<any>(`${environment.API_URL}/auth/stats`,  { headers: {
+      "x-auth-token": token,
+    }})
   }
 }

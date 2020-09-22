@@ -28,10 +28,13 @@ export class OrganizationsListComponent implements OnInit {
   }
 
   deleteHandler(id){
-    this.orgService.deleteOrg(id)
+    var result = confirm("Delete this organization?");
+    if (result) {
+      this.orgService.deleteOrg(id)
       .subscribe(() => this.orgService.getOrganizations().subscribe((orgs) => {
         this.data = orgs.organizations;
       }))
+    }
   }
 
 }

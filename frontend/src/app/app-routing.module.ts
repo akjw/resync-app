@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule  } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
+import { CalendarComponent } from './calendar/calendar.component';
 
 const routes: Routes = [
   {
@@ -16,7 +17,8 @@ const routes: Routes = [
   {
     path: 'redirectToRoot',
     redirectTo: '/'
-  }
+  },
+  { path: 'calendar',  canLoad: [AuthGuard], component: CalendarComponent, pathMatch: 'full'},
 ];
 
 @NgModule({

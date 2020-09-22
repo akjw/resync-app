@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -18,7 +19,7 @@ export class SigninComponent implements OnInit {
       Validators.minLength(6),
     ])
   })
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -31,6 +32,7 @@ export class SigninComponent implements OnInit {
     this.authService.signin(this.authForm.value).subscribe({
       next: (response) => {
         localStorage.setItem('token', response.token);
+        this.router.navigateByUrl('/home')
       },
       error: ({ error }) => {
         if (error.credentials){

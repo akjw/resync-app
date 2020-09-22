@@ -3,17 +3,39 @@
     <a routerLink="/" class="item">resyncTest</a>
 
     <div class="right menu">
-      <ng-container *ngIf="signedin$ | async">
+      <!-- <ng-container *ngIf="signedin$ | async">
         <a class="ui item" routerLink="/home" routerLinkActive="active">Home</a>
         <a class="ui item"  (click)="onSignout()">Sign Out</a>
-      </ng-container>
+      </ng-container> -->
       <ng-container *ngIf="!(signedin$ | async)">
         <a class="ui item" routerLink="/" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active">Sign In</a>
       <a class="ui item" routerLink="/register" routerLinkActive="active">Register</a>
       </ng-container>
     </div>
   </div>
-
-  <router-outlet></router-outlet>
+  <div class="ui grid stackable">
+        <div class="three wide column" *ngIf="signedin$ | async">
+          <div class="ui secondary vertical menu compact">
+            <a class="item" routerLink="/home" routerLinkActive="active">Home</a>
+            <a class="item" routerLinkActive="active" routerLink="/organizations">
+              Organizations
+            </a>
+            <a class="item" routerLinkActive="active" routerLink="/departments">
+              Departments
+            </a>
+            <a class="item" routerLinkActive="active" routerLink="/employees">
+              Employees
+            </a>
+            <a class="item" routerLinkActive="active" routerLink="/calendar">
+              Calendar
+            </a>
+            <a class="item"  (click)="onSignout()">Sign Out</a>
+          </div>
+      </div>
+      <!-- Site content !-->
+      <div class="thirteen wide column">
+        <router-outlet></router-outlet>
+      </div>
+  </div>
 </div>
 

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatchPassword } from '../validators/match-password';
 import { UniqueEmail } from '../validators/unique-email';
-import { AuthService } from '../auth.service'
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -39,7 +40,8 @@ export class RegisterComponent {
   constructor(
     private matchPassword: MatchPassword,
     private uniqueEmail: UniqueEmail,
-    private authService: AuthService 
+    private authService: AuthService,
+    private router: Router 
     ) { }
 
   // ngOnInit(): void {
@@ -52,6 +54,7 @@ export class RegisterComponent {
     this.authService.register(this.authForm.value).subscribe({
       next: (response) => {
         localStorage.setItem('token', response.token);
+        this.router.navigateByUrl('/home')
       },
       error: (err) => {
         if (!err.status) {

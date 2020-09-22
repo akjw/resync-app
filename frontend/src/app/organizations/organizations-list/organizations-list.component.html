@@ -1,0 +1,58 @@
+<h1>Organizations</h1>
+<a routerLink="/organizations/new" class="ui button primary">New</a>
+
+<table classNames="striped celled"  class="ui table">
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Owner
+      </th>
+      <th>
+        Address
+      </th>
+      <th>
+        City
+      </th>
+      <th>
+        State
+      </th>
+      <th>
+        Country
+      </th>
+      <th>
+        Misc. Actions
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let record of data">
+      <td>
+        {{ record.name }}
+      </td>
+      <td>
+        {{ record.owner.firstName }} {{ record.owner.lastName }}
+      </td>
+      <td>
+        {{ record.address }}
+      </td>
+      <td>
+        {{ record.city }}
+      </td>
+      <td>
+        {{ record.state }}
+      </td>
+      <td>
+        {{ record.country }}
+      </td>
+      <td>
+        <div class="ui buttons small">
+          <a class="ui button" [routerLink]="record._id">Edit</a>
+          <button class="ui button" [id]="record._id" (click)="deleteHandler(record._id)" >Delete</button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

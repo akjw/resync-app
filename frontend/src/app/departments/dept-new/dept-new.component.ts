@@ -18,6 +18,10 @@ export class DeptNewComponent implements OnInit {
       Validators.required,
       Validators.pattern(/^[A-Za-z0-9- ]+$/)
     ]),
+    owner: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^[A-Za-z0-9- ]+$/)
+    ]),
     organization: new FormControl('', [
       Validators.required,
     ]),

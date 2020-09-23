@@ -1,6 +1,7 @@
 <h3>Add Organization</h3>
 <form (ngSubmit)="onSubmit()" class="ui form" [formGroup]="authForm">
   <app-input inputType="text" label="Name" [control]="authForm.get('name')"></app-input>
+  <app-input inputType="text" label="Owner" [control]="authForm.get('owner')"></app-input>
   <app-input inputType="text" label="Address" [control]="authForm.get('address')"></app-input>
   <app-input inputType="text" label="City" [control]="authForm.get('city')"></app-input>
   <app-input inputType="text" label="State" [control]="authForm.get('state')"></app-input>

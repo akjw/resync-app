@@ -27,6 +27,19 @@ export class EmpService {
     }})
   }
 
+
+  getMonthEmps() {
+    return this.http.get<any>(`${environment.API_URL}/employees/month`,  { headers: {
+      "x-auth-token": this.token,
+    }})
+  }
+
+  getYearEmps() {
+    return this.http.get<any>(`${environment.API_URL}/employees/year`,  { headers: {
+      "x-auth-token": this.token,
+    }})
+  }
+
   addEmp(info: EmpInfo){
     return this.http
     .post<any>(`${environment.API_URL}/employees/new`, info, { headers: {

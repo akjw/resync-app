@@ -1,19 +1,13 @@
 <div class="ui container">
-  <div class="ui secondary pointing menu">
-    <a routerLink="/" class="item">resyncTest</a>
-
-    <div class="right menu">
-      <!-- <ng-container *ngIf="signedin$ | async">
-        <a class="ui item" routerLink="/home" routerLinkActive="active">Home</a>
-        <a class="ui item"  (click)="onSignout()">Sign Out</a>
-      </ng-container> -->
-      <ng-container *ngIf="!(signedin$ | async)">
+  <ng-container *ngIf="!(signedin$ | async)">
+    <div class="ui secondary pointing menu">
+      <div class="right menu">
         <a class="ui item" routerLink="/" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active">Sign In</a>
-      <a class="ui item" routerLink="/register" routerLinkActive="active">Register</a>
-      </ng-container>
+        <a class="ui item" routerLink="/register" routerLinkActive="active">Register</a>
+      </div>
     </div>
-  </div>
-  <div class="ui grid stackable">
+ </ng-container>
+  <div class="ui grid stackable main">
         <div class="three wide column" *ngIf="signedin$ | async">
           <div class="ui secondary vertical menu compact">
             <a class="item" routerLink="/home" routerLinkActive="active">Home</a>

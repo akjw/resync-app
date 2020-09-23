@@ -1,11 +1,16 @@
 <h3>Add Department</h3>
 <form (ngSubmit)="onSubmit()" class="ui form" [formGroup]="authForm">
   <app-input inputType="text" label="Description" [control]="authForm.get('description')"></app-input>
-  <label>Organization</label>
-  <select class="ui dropdown" [formControl]="authForm.get('organization')">
-    <option value="" disabled>Select Organization</option>
-    <option  *ngFor="let record of data" class="item" [value]="record._id">{{ record.name }}</option>
-  </select>
+  <app-input inputType="text" label="Owner" [control]="authForm.get('owner')"></app-input>
+
+  <div class="required field">
+    <label>Organization</label>
+    <select class="ui dropdown" [formControl]="authForm.get('organization')">
+      <option value="" disabled>Select Organization</option>
+      <option  *ngFor="let record of data" class="item" [value]="record._id">{{ record.name }}</option>
+    </select>
+  </div>
+ 
   <app-input inputType="text" label="Working Days" [control]="authForm.get('workingDays')"></app-input>
   <app-input inputType="text" label="Working Time" [control]="authForm.get('workingTime')"></app-input>
   

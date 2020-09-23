@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 interface Org {
   _id: string;
   name: string;
+  owner: string;
   address: string;
   city: string;
   state: string;
@@ -19,6 +20,7 @@ interface Org {
 })
 export class OrgEditComponent implements OnInit {
   name = '';
+  owner = '';
   address = '';
   city = '';
   state = '';
@@ -28,6 +30,10 @@ export class OrgEditComponent implements OnInit {
 
   authForm = new FormGroup({
     name: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^[A-Za-z0-9- ]+$/)
+    ]),
+    owner: new FormControl('', [
       Validators.required,
       Validators.pattern(/^[A-Za-z0-9- ]+$/)
     ]),
@@ -69,6 +75,7 @@ export class OrgEditComponent implements OnInit {
   populateForm(org){
     this.authForm.patchValue({
       name: org.name,
+      owner: org.owner,
       address: org.address,
       city: org.city,
       state: org.state,

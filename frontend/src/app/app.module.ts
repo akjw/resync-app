@@ -4,9 +4,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
-import { FullCalendarModule } from '@fullcalendar/angular'; // the main connector. must go first
+import { FullCalendarModule } from '@fullcalendar/angular'; 
 import dayGridPlugin from '@fullcalendar/daygrid';
-import { CalendarComponent } from './calendar/calendar.component'; // a plugin
+import { CalendarComponent } from './calendar/calendar.component'; 
+import { ChartsModule } from 'ng2-charts';
 
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -23,7 +24,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     AppRoutingModule,
     AuthModule,
     HttpClientModule,
-    FullCalendarModule
+    FullCalendarModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

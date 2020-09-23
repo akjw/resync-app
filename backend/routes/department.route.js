@@ -28,6 +28,55 @@ router.get("/", async (req, res) => {
 })
 
 /* 
+  @route GET api/departments/month
+  @desc get all departments created this month
+*/
+
+router.get("/month", async (req, res) => {
+  try {
+    var date = new Date(), y = date.getFullYear(), m = date.getMonth();
+    var firstDay = new Date(y, m, 1);
+    var lastDay = new Date(y, m + 1, 0);
+ 
+    let departments =  await Department.countDocuments({createdAt: {$gte: firstDay, $lt: lastDay}});
+    res.status(200).json({
+      message: 'Departments fetched',
+      departments,
+    })
+
+  } catch (err) {
+    res.status(500).json({
+      message: "Error: Departments not found",
+      statuscode: 'EB500'
+    })
+  }
+})
+
+
+/* 
+  @route GET api/departments/year
+  @desc get all departments created this year
+*/
+
+router.get("/year", async (req, res) => {
+  try {
+    let firstDay = new Date(new Date().getFullYear(), 0, 1);
+    let lastDay = new Date(new Date().getFullYear(), 11, 31);
+    let departments =  await Department.countDocuments({createdAt: {$gte: firstDay, $lt: lastDay }});
+    res.status(200).json({
+      message: 'Departments fetched',
+      departments,
+    })
+
+  } catch (err) {
+    res.status(500).json({
+      message: "Error: Departments not found",
+      statuscode: 'EB500'
+    })
+  }
+})
+
+/* 
   @route GET api/departments/organization/:id
   @desc get all departments in an organization
 */

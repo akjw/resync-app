@@ -24,6 +24,18 @@ export class DeptService {
     }})
   }
 
+  getMonthDepts() {
+    return this.http.get<any>(`${environment.API_URL}/departments/month`,  { headers: {
+      "x-auth-token": this.token,
+    }})
+  }
+
+  getYearDepts() {
+    return this.http.get<any>(`${environment.API_URL}/departments/year`,  { headers: {
+      "x-auth-token": this.token,
+    }})
+  }
+
   getOrgDepts(id: string){
     return this.http.get<any>(`${environment.API_URL}/departments/organization/${id}`,  { headers: {
       "x-auth-token": this.token,

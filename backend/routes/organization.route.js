@@ -27,6 +27,55 @@ router.get("/", async (req, res) => {
 })
 
 /* 
+  @route GET api/organizations/month
+  @desc get all organizations created this month
+*/
+
+router.get("/month", async (req, res) => {
+  try {
+    var date = new Date(), y = date.getFullYear(), m = date.getMonth();
+    var firstDay = new Date(y, m, 1);
+    var lastDay = new Date(y, m + 1, 0);
+    console.log('current month', date, firstDay, lastDay)
+    let organizations =  await Organization.countDocuments({createdAt: {$gte: firstDay, $lt: lastDay}});
+    res.status(200).json({
+      message: 'Organizations fetched',
+      organizations,
+    })
+
+  } catch (err) {
+    res.status(500).json({
+      message: "Error: Organizations not found",
+      statuscode: 'EB500'
+    })
+  }
+})
+
+
+/* 
+  @route GET api/organizations/year
+  @desc get all organizations created this year
+*/
+
+router.get("/year", async (req, res) => {
+  try {
+    let firstDay = new Date(new Date().getFullYear(), 0, 1);
+    let lastDay = new Date(new Date().getFullYear(), 11, 31);
+    let organizations =  await Organization.countDocuments({createdAt: {$gte: firstDay, $lt: lastDay }});
+    res.status(200).json({
+      message: 'Organizations fetched',
+      organizations,
+    })
+
+  } catch (err) {
+    res.status(500).json({
+      message: "Error: Organizations not found",
+      statuscode: 'EB500'
+    })
+  }
+})
+
+/* 
   @route GET api/organizations/:id
   @desc get organization
 */

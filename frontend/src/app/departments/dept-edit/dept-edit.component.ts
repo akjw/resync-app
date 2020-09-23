@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 interface Dept {
   _id: string;
   description: string;
+  owner: string;
   workingTime: string;
   workingDays: string;
 }
@@ -24,6 +25,10 @@ export class DeptEditComponent implements OnInit {
 
   authForm = new FormGroup({
     description: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^[A-Za-z0-9- ]+$/)
+    ]),
+    owner: new FormControl('', [
       Validators.required,
       Validators.pattern(/^[A-Za-z0-9- ]+$/)
     ]),
@@ -56,6 +61,7 @@ export class DeptEditComponent implements OnInit {
   populateForm(dept){
     this.authForm.patchValue({
       description: dept.description,
+      owner: dept.owner,
       workingDays: dept.workingDays,
       workingTime: dept.workingTime,
     })

@@ -25,6 +25,19 @@ export class OrgService {
     }})
   }
 
+
+  getMonthOrgs() {
+    return this.http.get<any>(`${environment.API_URL}/organizations/month`,  { headers: {
+      "x-auth-token": this.token,
+    }})
+  }
+
+  getYearOrgs() {
+    return this.http.get<any>(`${environment.API_URL}/organizations/year`,  { headers: {
+      "x-auth-token": this.token,
+    }})
+  }
+
   addOrg(info: OrgInfo){
     return this.http
     .post<any>(`${environment.API_URL}/organizations/new`, info, { headers: {

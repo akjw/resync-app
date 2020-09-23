@@ -1,3 +1,4 @@
+<h1>At A Glance</h1>
 <div class="ui statistics">
   <div class="statistic">
     <div class="value">
@@ -24,3 +25,13 @@
     </div>
   </div>
 </div>
+<h2>Newly Added</h2>
+<a *ngIf="showMonth" (click)="onClick()" class="ui button primary small">This Year</a>
+<a *ngIf="!showMonth" (click)="onClick()" class="ui button primary small">This Month</a>
+<div [hidden]="!showMonth">
+  <canvas #monthChart>{{ monthData }}</canvas>
+</div>
+<div [hidden]="showMonth">
+  <canvas #yearChart>{{ yearData }}</canvas>
+</div>
+<script src="node_modules/chart.js/src/chart.js"></script>

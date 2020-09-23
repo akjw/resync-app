@@ -13,7 +13,7 @@ const checkToken = require('../config/config');
 
 router.get("/", async (req, res) => {
   try {
-    let departments =  await Department.find().populate({path: 'organization', select: 'name'}).populate({path: 'owner', select: 'firstName lastName'});
+    let departments =  await Department.find().populate({path: 'organization', select: 'name'});
     res.status(200).json({
       message: 'Departments fetched',
       departments,
@@ -28,13 +28,34 @@ router.get("/", async (req, res) => {
 })
 
 /* 
+  @route GET api/departments/organization/:id
+  @desc get all departments in an organization
+*/
+
+router.get("/organization/:id", async (req, res) => {
+  try {
+    let departments =  await Department.find({organization: req.params.id})
+    res.status(200).json({
+      message: 'Departments fetched',
+      departments,
+    })
+
+  } catch (err) {
+    res.status(500).json({
+      message: "Error: Department not found",
+      statuscode: 'EB500'
+    })
+  }
+})
+
+/* 
   @route GET api/departments/:id
   @desc get department
 */
 
 router.get("/:id", async (req, res) => {
   try {
-    let department =  await Department.findById(req.params.id).populate({path: 'organization', select: 'name'}).populate({path: 'owner', select: 'firstName lastName'});
+    let department =  await Department.findById(req.params.id).populate({path: 'organization', select: 'name'});
     res.status(200).json({
       message: 'Department fetched',
       department,
@@ -56,7 +77,7 @@ router.get("/:id", async (req, res) => {
 
 router.post("/new", checkToken, async (req, res) => {
   try {
-    await Department.create({description: req.body.description, owner: req.user.id, organization: req.body.organization, workingTime: req.body.workingTime, workingDays: req.body.workingDays})
+    await Department.create({description: req.body.description, owner: req.body.owner, organization: req.body.organization, workingTime: req.body.workingTime, workingDays: req.body.workingDays})
 
     //increment user's organization count
     await User.findByIdAndUpdate(req.user.id,  { $inc : {deptNum: 1}})
@@ -81,7 +102,7 @@ router.post("/new", checkToken, async (req, res) => {
 
 router.put("/:id", checkToken, async (req, res) => {
   try {
-   await Department.findByIdAndUpdate(req.params.id, {description: req.body.description, workingTime: req.body.workingTime, workingDays: req.body.workingDays });
+   await Department.findByIdAndUpdate(req.params.id, {description: req.body.description, owner: req.body.owner, workingTime: req.body.workingTime, workingDays: req.body.workingDays });
 
     res.status(200).json({
       message: 'Department updated',

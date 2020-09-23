@@ -12,7 +12,7 @@ const checkToken = require('../config/config');
 
 router.get("/", async (req, res) => {
   try {
-    let organizations =  await Organization.find().populate({path: 'owner', select: 'firstName lastName -_id'});
+    let organizations =  await Organization.find();
     res.status(200).json({
       message: 'Organizations fetched',
       organizations,
@@ -33,7 +33,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    let organization =  await Organization.findById(req.params.id).populate({path: 'owner', select: '-password'});
+    let organization =  await Organization.findById(req.params.id);
     res.status(200).json({
       message: 'Organization fetched',
       organization,
@@ -54,8 +54,8 @@ router.get("/:id", async (req, res) => {
 
 router.post("/new", checkToken, async (req, res) => {
   try {
-    
-    await Organization.create({name: req.body.name, owner: req.user.id, address: req.body.address, city: req.body.city, state: req.body.state, country: req.body.country})
+
+    await Organization.create({name: req.body.name, owner: req.body.owner, address: req.body.address, city: req.body.city, state: req.body.state, country: req.body.country})
 
     //increment user's organization count
     await User.findByIdAndUpdate(req.user.id,  { $inc : {orgNum: 1}})
@@ -79,7 +79,7 @@ router.post("/new", checkToken, async (req, res) => {
 
 router.put("/:id", checkToken, async (req, res) => {
   try {
-    let organization =  await Organization.findByIdAndUpdate(req.params.id, {name: req.body.name, address: req.body.address, city: req.body.city, state: req.body.state, country: req.body.country});
+    let organization =  await Organization.findByIdAndUpdate(req.params.id, {name: req.body.name, owner: req.body.owner, address: req.body.address, city: req.body.city, state: req.body.state, country: req.body.country});
 
     res.status(200).json({
       message: 'Organization updated',

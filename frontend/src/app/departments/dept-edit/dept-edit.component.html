@@ -1,0 +1,24 @@
+<h3>Edit Department</h3>
+<form (ngSubmit)="onSubmit()" class="ui form" [formGroup]="authForm">
+  <app-input inputType="text" label="Description" [control]="authForm.get('description')"></app-input>
+  <app-input inputType="text" label="Working Days" [control]="authForm.get('workingDays')"></app-input>
+  <app-input inputType="text" label="Working Time" [control]="authForm.get('workingTime')"></app-input>
+  
+ 
+
+  <div *ngIf="authForm.errors" 
+  class="ui red basic label">
+    <p *ngIf="authForm.errors.noConnection">
+      No internet connection
+    </p >
+    <p *ngIf="authForm.errors.unknownError">
+      Submission failed. Please try again later.
+    </p >
+  </div>
+
+  <div>
+    <button class="ui submit button primary">
+      Save
+    </button>
+  </div>
+</form>

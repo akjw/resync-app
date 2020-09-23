@@ -15,6 +15,16 @@ const routes: Routes = [
     loadChildren: () => import('./organizations/organizations.module').then(mod => mod.OrganizationsModule)
   },
   {
+    path: 'departments',
+    canLoad: [AuthGuard],
+    loadChildren: () => import('./departments/departments.module').then(mod => mod.DepartmentsModule)
+  },
+  {
+    path: 'employees',
+    canLoad: [AuthGuard],
+    loadChildren: () => import('./employees/employees.module').then(mod => mod.EmployeesModule)
+  },
+  {
     path: 'redirectToRoot',
     redirectTo: '/'
   },

@@ -1,26 +1,29 @@
-<h1>Organizations</h1>
-<a routerLink="/organizations/new" class="ui button primary">New</a>
+<h1>Employees</h1>
+<a routerLink="/employees/new" class="ui button primary">New</a>
 
 <table classNames="striped celled"  class="ui table">
   <thead>
     <tr>
       <th>
-        Name
+        First Name
       </th>
       <th>
-        Owner
+        Last Name
       </th>
       <th>
-        Address
+        D.O.B
       </th>
       <th>
-        City
+        Organization
       </th>
       <th>
-        State
+        Department
       </th>
       <th>
-        Country
+        Work Title
+      </th>
+      <th>
+        Total Experience
       </th>
       <th>
         Misc. Actions
@@ -30,22 +33,25 @@
   <tbody>
     <tr *ngFor="let record of data">
       <td>
-        {{ record.name }}
+        {{ record.firstName  }}
       </td>
       <td>
-        {{ record.owner }} 
+        {{ record.lastName }}
       </td>
       <td>
-        {{ record.address }}
+        {{ record.dob | date: "dd MMM yyyy" }}
       </td>
       <td>
-        {{ record.city }}
+        {{ record.organization.name }}
       </td>
       <td>
-        {{ record.state }}
+        {{ record.department.description }}
       </td>
       <td>
-        {{ record.country }}
+        {{ record.workTitle }}
+      </td>
+      <td>
+        {{ record.totalExperience }}
       </td>
       <td>
         <div class="ui buttons small">

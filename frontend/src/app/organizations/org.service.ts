@@ -15,6 +15,7 @@ interface OrgInfo {
   providedIn: 'root'
 })
 export class OrgService {
+  
   token = localStorage.getItem('token');
   constructor(private http: HttpClient) { }
 

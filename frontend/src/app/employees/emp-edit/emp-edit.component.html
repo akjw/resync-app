@@ -1,0 +1,41 @@
+<h3>Edit Employee</h3>
+<form (ngSubmit)="onSubmit()" class="ui form" [formGroup]="authForm">
+  <app-input inputType="text" label="First Name" [control]="authForm.get('firstName')"></app-input>
+  <app-input inputType="text" label="Last Name" [control]="authForm.get('lastName')"></app-input>
+
+  <div class="required field">
+      <label>Date of Birth</label>
+      <input type="date" [formControl]="authForm.get('dob')"/>
+  </div>
+ 
+  <div class="required field">
+    <label>Department</label>
+    <select class="ui dropdown" [formControl]="authForm.get('department')">
+      <option value="" disabled>Select Department</option>
+      <option  *ngFor="let record of data" class="item" [value]="record._id">{{ record.description }}</option>
+    </select>
+
+  </div>
+
+ 
+  <app-input inputType="text" label="Work Title" [control]="authForm.get('workTitle')"></app-input>
+  <app-input inputType="text" label="Total Years of Experience (Please enter numeric characters only [0-9])" [control]="authForm.get('totalExperience')"></app-input>
+
+
+  <div *ngIf="authForm.errors" 
+  class="ui red basic label">
+    <p *ngIf="authForm.errors.noConnection">
+      No internet connection
+    </p >
+    <p *ngIf="authForm.errors.unknownError">
+      Submission failed. Please try again later.
+    </p >
+  </div>
+
+  <div>
+    <button class="ui submit button primary">
+      Save
+    </button>
+  </div>
+</form>
+

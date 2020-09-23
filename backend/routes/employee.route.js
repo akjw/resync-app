@@ -33,9 +33,9 @@ router.get("/", async (req, res) => {
 
 router.get("/month", async (req, res) => {
   try {
-    var date = new Date(), y = date.getFullYear(), m = date.getMonth();
-    var firstDay = new Date(y, m, 1);
-    var lastDay = new Date(y, m + 1, 0);
+    let date = new Date(), y = date.getFullYear(), m = date.getMonth();
+    let firstDay = new Date(y, m, 1);
+    let lastDay = new Date(y, m + 1, 0);
  
     let employees =  await Employee.countDocuments({createdAt: {$gte: firstDay, $lt: lastDay}});
     res.status(200).json({
@@ -118,6 +118,7 @@ router.get("/:id", async (req, res) => {
   }
 })
 
+
 /* 
   @route POST api/employees/new
   @desc add employee to department
@@ -175,7 +176,7 @@ router.delete("/:id", checkToken, async (req, res) => {
   try {
     await Employee.findByIdAndDelete(req.params.id);
 
-    //decrement user's department count
+    //decrement user's employee count
     await User.findByIdAndUpdate(req.user.id,  { $inc : {employeeNum: -1}})
 
     res.status(200).json({

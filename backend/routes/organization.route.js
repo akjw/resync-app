@@ -33,10 +33,10 @@ router.get("/", async (req, res) => {
 
 router.get("/month", async (req, res) => {
   try {
-    var date = new Date(), y = date.getFullYear(), m = date.getMonth();
-    var firstDay = new Date(y, m, 1);
-    var lastDay = new Date(y, m + 1, 0);
-    console.log('current month', date, firstDay, lastDay)
+    let date = new Date(), y = date.getFullYear(), m = date.getMonth();
+    let firstDay = new Date(y, m, 1);
+    let lastDay = new Date(y, m + 1, 0);
+  
     let organizations =  await Organization.countDocuments({createdAt: {$gte: firstDay, $lt: lastDay}});
     res.status(200).json({
       message: 'Organizations fetched',
@@ -161,7 +161,7 @@ router.delete("/:id", checkToken, async (req, res) => {
     await Department.deleteMany({organization: req.params.id})
     await Employee.deleteMany({organization: req.params.id})
 
-    //decrement user's organization count
+    //decrement user's organization, department, & employee count
     await User.findByIdAndUpdate(req.user.id,  {$inc : {orgNum: -1, deptNum: -deptCount, employeeNum: -employeeCount}})
 
     res.status(200).json({

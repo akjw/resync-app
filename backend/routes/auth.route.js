@@ -49,7 +49,7 @@ router.post('/signin', async (req, res) => {
   let {email, password } = req.body;
   try {
 
-    //search db for user w matching email
+    //search db for user with matching email
     let user = await User.findOne({email});
 
     if(!user){
@@ -122,6 +122,11 @@ router.get('/user', checkToken, async (req, res) => {
     })
   }
 })
+
+/* 
+  @route GET api/auth/stats
+  @desc get count for organizations, departments, and employees
+*/
 
 router.get('/stats', async (req, res) => {
   try {

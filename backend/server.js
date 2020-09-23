@@ -8,8 +8,7 @@ const path = require("path")
 
 
 //==== middleware
-// app.use(express.static(path.join(__dirname, "client", "build")))
-require('./database/db'); 
+require('../database/db'); 
 app.use(express.json()); 
 app.use(cors()); 
 
@@ -29,4 +28,4 @@ app.get('*', (req, res) => {
 
 
 //=== setup server part
-app.listen(process.env.PORT, () => console.log(`running on ${process.env.PORT}`));
+app.listen(process.env.PORT || 8080, () => console.log(`running on ${process.env.PORT}`));

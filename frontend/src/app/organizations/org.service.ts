@@ -20,46 +20,46 @@ export class OrgService {
   constructor(private http: HttpClient) { }
 
   getOrganizations() {
-    return this.http.get<any>(`${environment.API_URL}/organizations`,  { headers: {
+    return this.http.get<any>(`api/organizations`,  { headers: {
       "x-auth-token": this.token,
     }})
   }
 
 
   getMonthOrgs() {
-    return this.http.get<any>(`${environment.API_URL}/organizations/month`,  { headers: {
+    return this.http.get<any>(`api/organizations/month`,  { headers: {
       "x-auth-token": this.token,
     }})
   }
 
   getYearOrgs() {
-    return this.http.get<any>(`${environment.API_URL}/organizations/year`,  { headers: {
+    return this.http.get<any>(`api/organizations/year`,  { headers: {
       "x-auth-token": this.token,
     }})
   }
 
   addOrg(info: OrgInfo){
     return this.http
-    .post<any>(`${environment.API_URL}/organizations/new`, info, { headers: {
+    .post<any>(`api/organizations/new`, info, { headers: {
       "x-auth-token": this.token,
     }})
   }
 
   getOrg(id: string){
-    return this.http.get<any>(`${environment.API_URL}/organizations/${id}`,  { headers: {
+    return this.http.get<any>(`api/organizations/${id}`,  { headers: {
       "x-auth-token": this.token,
     }})
   }
 
   editOrg(id: string, info: OrgInfo){
     return this.http
-    .put<any>(`${environment.API_URL}/organizations/${id}`, info, { headers: {
+    .put<any>(`api/organizations/${id}`, info, { headers: {
       "x-auth-token": this.token,
     }})
   }
 
   deleteOrg(id: string){
-    return this.http.delete<any>(`${environment.API_URL}/organizations/${id}`,  { headers: {
+    return this.http.delete<any>(`api/organizations/${id}`,  { headers: {
       "x-auth-token": this.token,
     }})
   }

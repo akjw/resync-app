@@ -143,13 +143,10 @@ class EmpEditComponent {
     ngOnInit() {
         this.empService.getEmp(this.id)
             .subscribe((emp) => {
-            console.log('org id', emp.employee.organization);
             this.deptService.getOrgDepts(emp.employee.organization._id).subscribe((dept) => {
                 this.data = dept.departments;
-                console.log('data', this.data);
             });
             this.populateForm(emp.employee);
-            console.log('emp data', emp.employee);
         });
     }
     populateForm(emp) {
@@ -341,7 +338,7 @@ function EmpNewComponent_option_15_Template(rf, ctx) { if (rf & 1) {
 } }
 function EmpNewComponent_option_22_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "option", 6);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "No departments available. Choose another organization.");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "No departments available. Choose another organization or create a new department.");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } }
 function EmpNewComponent_option_23_Template(rf, ctx) { if (rf & 1) {
@@ -419,8 +416,6 @@ class EmpNewComponent {
         });
     }
     onOrgSelect(e) {
-        console.log('event', e);
-        console.log('taregt', e.target.value);
         this.deptService.getOrgDepts(e.target.value)
             .subscribe((depts) => {
             this.deptData = depts.departments;
@@ -615,7 +610,6 @@ class EmpListComponent {
         this.empService.getEmployees()
             .subscribe((emps) => {
             this.data = emps.employees;
-            console.log(this.data);
         });
     }
     deleteHandler(id) {

@@ -494,8 +494,6 @@ class OrgEditComponent {
         this.orgService.getOrg(this.id)
             .subscribe((org) => {
             this.populateForm(org.organization);
-            // this.org = org.organization;
-            console.log(this.org);
         });
     }
     populateForm(org) {

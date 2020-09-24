@@ -7,12 +7,9 @@ const path = require("path")
 
 
 
-//==== middleware
+//==== middleware.
 app.use(express.static(path.join(__dirname, "public")));
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "public/index.html"));
-});
-require('../database/db'); 
+require('./database/db'); 
 app.use(express.json()); 
 app.use(cors()); 
 
@@ -24,11 +21,9 @@ app.use('/api/organizations', require('./routes/organization.route'));
 app.use('/api/employees', require('./routes/employee.route'));
 app.use('/api/departments', require('./routes/department.route'));
 
-
-// //==== 404 errors
-// app.get('*', (req, res) => {
-//   res.status(404).json({ message: "404: Not Found" , code: 'EB404'})
-// })
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public/index.html"));
+});
 
 
 //=== setup server part

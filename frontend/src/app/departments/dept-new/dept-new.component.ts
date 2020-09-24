@@ -45,7 +45,6 @@ export class DeptNewComponent implements OnInit {
     this.orgService.getOrganizations()
      .subscribe((orgs) => {
        this.data = orgs.organizations;
-       console.log(this.data)
      })
   }
 

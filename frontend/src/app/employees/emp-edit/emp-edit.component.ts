@@ -63,14 +63,11 @@ export class EmpEditComponent implements OnInit {
   ngOnInit(): void {
     this.empService.getEmp(this.id)
     .subscribe((emp) => {
-        console.log('org id', emp.employee.organization)
-    this.deptService.getOrgDepts(emp.employee.organization._id).subscribe((dept) => {
-      this.data = dept.departments
-      console.log('data', this.data)
-    })
-      this.populateForm(emp.employee)
-      console.log('emp data', emp.employee)
-    })
+      this.deptService.getOrgDepts(emp.employee.organization._id).subscribe((dept) => {
+        this.data = dept.departments
+      })
+        this.populateForm(emp.employee)
+      })
   }
 
   populateForm(emp){

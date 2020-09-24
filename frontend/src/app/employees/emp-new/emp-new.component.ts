@@ -57,8 +57,6 @@ export class EmpNewComponent implements OnInit {
   }
 
   onOrgSelect(e) {
-    console.log('event', e)
-    console.log('taregt', e.target.value)
     this.deptService.getOrgDepts(e.target.value)
       .subscribe((depts) => {
         this.deptData = depts.departments;

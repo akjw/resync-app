@@ -22,46 +22,46 @@ export class EmpService {
 
 
   getEmployees() {
-    return this.http.get<any>(`${URL}api/employees`,  { headers: {
+    return this.http.get<any>(`api/employees`,  { headers: {
       "x-auth-token": this.token,
     }})
   }
 
 
   getMonthEmps() {
-    return this.http.get<any>(`${URL}api/employees/month`,  { headers: {
+    return this.http.get<any>(`api/employees/month`,  { headers: {
       "x-auth-token": this.token,
     }})
   }
 
   getYearEmps() {
-    return this.http.get<any>(`${URL}api/employees/year`,  { headers: {
+    return this.http.get<any>(`api/employees/year`,  { headers: {
       "x-auth-token": this.token,
     }})
   }
 
   addEmp(info: EmpInfo){
     return this.http
-    .post<any>(`${URL}api/employees/new`, info, { headers: {
+    .post<any>(`api/employees/new`, info, { headers: {
       "x-auth-token": this.token,
     }})
   }
 
   getEmp(id: string){
-    return this.http.get<any>(`${URL}api/employees/${id}`,  { headers: {
+    return this.http.get<any>(`api/employees/${id}`,  { headers: {
       "x-auth-token": this.token,
     }})
   }
 
   editEmp(id: string, info: EmpInfo){
     return this.http
-    .put<any>(`${URL}api/employees/${id}`, info, { headers: {
+    .put<any>(`api/employees/${id}`, info, { headers: {
       "x-auth-token": this.token,
     }})
   }
 
   deleteEmp(id: string){
-    return this.http.delete<any>(`${URL}api/employees/${id}`,  { headers: {
+    return this.http.delete<any>(`api/employees/${id}`,  { headers: {
       "x-auth-token": this.token,
     }})
   }

@@ -20,46 +20,46 @@ export class OrgService {
   constructor(private http: HttpClient) { }
 
   getOrganizations() {
-    return this.http.get<any>(`${URL}api/organizations`,  { headers: {
+    return this.http.get<any>(`api/organizations`,  { headers: {
       "x-auth-token": this.token,
     }})
   }
 
 
   getMonthOrgs() {
-    return this.http.get<any>(`${URL}api/organizations/month`,  { headers: {
+    return this.http.get<any>(`api/organizations/month`,  { headers: {
       "x-auth-token": this.token,
     }})
   }
 
   getYearOrgs() {
-    return this.http.get<any>(`${URL}api/organizations/year`,  { headers: {
+    return this.http.get<any>(`api/organizations/year`,  { headers: {
       "x-auth-token": this.token,
     }})
   }
 
   addOrg(info: OrgInfo){
     return this.http
-    .post<any>(`${URL}api/organizations/new`, info, { headers: {
+    .post<any>(`api/organizations/new`, info, { headers: {
       "x-auth-token": this.token,
     }})
   }
 
   getOrg(id: string){
-    return this.http.get<any>(`${URL}api/organizations/${id}`,  { headers: {
+    return this.http.get<any>(`api/organizations/${id}`,  { headers: {
       "x-auth-token": this.token,
     }})
   }
 
   editOrg(id: string, info: OrgInfo){
     return this.http
-    .put<any>(`${URL}api/organizations/${id}`, info, { headers: {
+    .put<any>(`api/organizations/${id}`, info, { headers: {
       "x-auth-token": this.token,
     }})
   }
 
   deleteOrg(id: string){
-    return this.http.delete<any>(`${URL}api/organizations/${id}`,  { headers: {
+    return this.http.delete<any>(`api/organizations/${id}`,  { headers: {
       "x-auth-token": this.token,
     }})
   }

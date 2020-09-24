@@ -29,14 +29,14 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   emailAvailable(email: string){
-    return this.http.post<{ available: boolean }>(`${URL}api/auth/email`, {
+    return this.http.post<{ available: boolean }>(`api/auth/email`, {
       email
     })
   }
 
   register(credentials: RegisterCredentials){
     return this.http
-    .post<any>(`${URL}api/auth/register`, credentials)
+    .post<any>(`api/auth/register`, credentials)
     .pipe(
         tap(() => {
           this.signedin$.next(true);
@@ -59,7 +59,7 @@ export class AuthService {
   }
 
   signin(credentials: SigninCredentials) {
-    return this.http.post<any>(`${URL}api/auth/signin`, credentials)
+    return this.http.post<any>(`api/auth/signin`, credentials)
     .pipe(
       tap(() => {
         this.signedin$.next(true);
@@ -69,7 +69,7 @@ export class AuthService {
 
   getStats(){
     let token = localStorage.getItem('token');
-    return this.http.get<any>(`${URL}api/auth/stats`,  { headers: {
+    return this.http.get<any>(`api/auth/stats`,  { headers: {
       "x-auth-token": token,
     }})
   }

@@ -20,7 +20,7 @@
     <label>Department</label>
     <select class="ui dropdown" [formControl]="authForm.get('department')" [disabled]="!deptData">
       <option value="" disabled>Select Department</option>
-      <option value="" disabled *ngIf="!deptData.length">No departments available. Choose another organization.</option>
+      <option value="" disabled *ngIf="!deptData.length">No departments available. Choose another organization or create a new department.</option>
       <option  *ngFor="let record of deptData" class="item" [value]="record._id">{{ record.description }}</option>
     </select>
 

@@ -15,7 +15,6 @@ export class EmpListComponent {
     this.empService.getEmployees()
     .subscribe((emps) => {
       this.data = emps.employees;
-      console.log(this.data)
     })
   }
 

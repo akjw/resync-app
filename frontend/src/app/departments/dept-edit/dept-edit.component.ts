@@ -54,7 +54,6 @@ export class DeptEditComponent implements OnInit {
     this.deptService.getDept(this.id)
     .subscribe((dept) => {
       this.populateForm(dept.department)
-      console.log(dept)
     })
   }
 

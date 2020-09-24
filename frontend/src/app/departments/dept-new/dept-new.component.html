@@ -7,6 +7,7 @@
     <label>Organization</label>
     <select class="ui dropdown" [formControl]="authForm.get('organization')">
       <option value="" disabled>Select Organization</option>
+      <option value="" disabled *ngIf="!data.length">No organizations available. Please create an organization first.</option>
       <option  *ngFor="let record of data" class="item" [value]="record._id">{{ record.name }}</option>
     </select>
   </div>
